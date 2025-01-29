@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Post{% endblock %}
+
+{% block content %}
+    <div class="max-w-md mx-auto bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="px-4 py-5 sm:px-6">
+            <h2 class="text-2xl font-bold text-gray-900">Delete Post</h2>
+        </div>
+        <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+            <div class="sm:px-6 sm:py-5">
+                <p class="text-gray-700">Are you sure you want to delete "{{ object.title }}"?</p>
+                <form method="post" class="mt-5">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
+                        Yes, delete
+                    </button>
+                    <a href="{% url 'blog:post_detail' object.pk %}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Cancel
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

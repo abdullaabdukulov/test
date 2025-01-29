@@ -1,0 +1,22 @@
+<header class="bg-blue-600 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <a href="{% url 'post_list' %}" class="text-2xl font-bold">BlogAuth</a>
+        <nav>
+            <a href="{% url 'post_list' %}" class="mx-2 hover:underline">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'blog:post_create' %}" class="mx-2 hover:underline">New Post</a>
+                <a href="{% url 'accounts:profile' %}" class="mx-2 hover:underline">Profile</a>
+                <form method="post" action="{% url 'accounts:logout' %}" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="mx-2 hover:underline">
+                        Logout
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'accounts:login' %}" class="mx-2 hover:underline">Login</a>
+                <a href="{% url 'accounts:signup' %}" class="mx-2 hover:underline">Sign Up</a>
+            {% endif %}
+            <a href="{% url 'accounts:sender' %}" class="mx-2 hover:underline">Send Message</a>
+        </nav>
+    </div>
+</header>
